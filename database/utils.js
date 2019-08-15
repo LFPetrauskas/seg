@@ -45,7 +45,7 @@ async function executeProcedure(sql, params, mode) {
         conn.release();
         switch (mode) {
             case 1:
-                return results;
+                return results[0];
             default:
                 return { resultado: results.affectedRows > 0 ? true : false };
         }

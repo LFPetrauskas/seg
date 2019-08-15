@@ -1,12 +1,13 @@
 require('dotenv').config();
-let { listEmpresa } = require('./database/empresa');
+let { checkLogin } = require('./database/usuario');
 
 (async function () {
     try {
-        let results = await listEmpresa();
+        let results = await checkLogin('leonardo.petrauskas', 'nada a verirmao');
         console.log(results[0]);
         process.exit();
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        process.exit();
     }
 })();

@@ -1,4 +1,4 @@
-let { executeProcedure } = require('./utils');
+const { executeProcedure } = require('./utils');
 
 async function getFuncionario(usuarioId) {
     try {

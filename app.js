@@ -1,8 +1,8 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
-require('dotenv').config();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -16,13 +16,15 @@ app.use((req, res, next) => {
     next();
 });
 
+require('./rotas/rotaLogin')(app);
 require('./rotas/rotaEmpresa')(app);
 require('./rotas/rotaFuncionario')(app);
 require('./rotas/rotaDocumento')(app);
+
+
 
 app.get('*', (req, res) => {
     res.status(404).send('Erro 404 - página não encontrada.');
 })
 
 app.listen(PORT, () => console.log(`Servidor online em ${(new Date()).toLocaleString()} PORTA ${PORT}`));
-

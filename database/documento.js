@@ -1,4 +1,4 @@
-let { executeProcedure } = require('./utils');
+const { executeProcedure } = require('./utils');
 
 async function addDocumento(descricao, validadeDias, frequenciaDias, aoValidade, aoFrequencia, aoQualificacao, aoUtilizaFuncionario, aoUtilizaEmpresa) {
     try {
