@@ -17,6 +17,11 @@ app.use((req, res, next) => {
 });
 
 require('./rotas/rotaLogin')(app);
+
+app.use((req, res, next) => {
+    console.log("teste");
+    next();
+})
 require('./rotas/rotaEmpresa')(app);
 require('./rotas/rotaFuncionario')(app);
 require('./rotas/rotaDocumento')(app);
