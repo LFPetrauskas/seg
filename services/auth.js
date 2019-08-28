@@ -1,5 +1,4 @@
 const json = require('jsonwebtoken');
-const { promisify } = require('util');
 
 //const sign = promisify(json.sign);
 const sign = payload => new Promise((resolve, reject) => {
@@ -11,8 +10,17 @@ const sign = payload => new Promise((resolve, reject) => {
     } catch (error) {
         reject(error);
     }
-})
+});
 
-const verify = promisify(json.verify);
+const verify = token => new Promise((resolve, reject) => {
+    try {
+        json.verify(token, process.env.SECRET, (e, res) => {
+            if (e) reject(e);
+            resolve(res);
+        })
+    } catch (error) {
+        reject(error);
+    }
+});
 
 module.exports = { sign, verify }

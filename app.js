@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const { verify } = require('./services/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -19,8 +20,22 @@ app.use((req, res, next) => {
 require('./rotas/rotaLogin')(app);
 
 app.use((req, res, next) => {
-    console.log("teste");
-    next();
+    (async () => {
+        if (!req.headers.authorization) {
+            return res.send("Inválido");
+        }
+        let token = req.headers.authorization.split(" ")[1];
+        try {
+            let verifiedToken = await verify(token);
+            res.send(verifiedToken)
+        } catch (error) {
+            res.send({
+                error: "Token inválido",
+                info: null
+            });
+        }
+    })();
+
 })
 require('./rotas/rotaEmpresa')(app);
 require('./rotas/rotaFuncionario')(app);
