@@ -4,9 +4,9 @@ module.exports = app => {
     app.get('/empresa/get', (req, res) => {
         (async () => {
             try {
-                let { empresaId } = req.body;
-                if (empresaId === null || empresaId === undefined) throw new Error('Id de empresa inválido');
-                let results = await getEmpresa(empresaId);
+                let { cdEmpresa } = req.body;
+                if (cdEmpresa === null || cdEmpresa === undefined) throw new Error('Cód. de empresa inválido');
+                let results = await getEmpresa(cdEmpresa);
                 res.status(200).send(results);
             } catch (error) {
                 res.send({ error: error.message });

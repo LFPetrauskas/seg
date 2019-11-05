@@ -9,10 +9,10 @@ async function addDocumento(descricao, validadeDias, frequenciaDias, aoValidade,
     }
 }
 
-async function deleteDocumento(idDocumento) {
+async function deleteDocumento(cdDocumento) {
     try {
         let sql = 'call delete_documento(?)';
-        return await executeProcedure(sql, [idDocumento], 2);
+        return await executeProcedure(sql, [cdDocumento], 2);
     } catch (error) {
         throw error;
     }

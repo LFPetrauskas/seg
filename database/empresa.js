@@ -1,9 +1,9 @@
 const { executeProcedure } = require('./utils');
 
-async function getEmpresa(empresaId) {
+async function getEmpresa(cdEmpresa) {
     try {
         let sql = 'call get_empresa(?)';
-        return await executeProcedure(sql, [empresaId], 1);
+        return await executeProcedure(sql, [cdEmpresa], 1);
     } catch (err) {
         throw { err };
     }
@@ -28,28 +28,28 @@ async function addEmpresa(nomeEmpresarial, cnpj, logradouro, numeroEndereco, com
     }
 }
 
-async function editEmpresa(empresaId, nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone, aoAtivo) {
+async function editEmpresa(cdEmpresa, nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone, aoAtivo) {
     try {
         let sql = 'call edit_empresa(?,?,?,?,?,?,?,?,?,?,?,?)';
-        return await executeProcedure(sql, [empresaId, nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone, aoAtivo], 2);
+        return await executeProcedure(sql, [cdEmpresa, nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone, aoAtivo], 2);
     } catch (err) {
         throw { err };
     }
 }
 
-async function deleteEmpresa(empresaId) {
+async function deleteEmpresa(cdEmpresa) {
     try {
         let sql = 'call delete_empresa(?)';
-        return await executeProcedure(sql, [empresaId], 2);
+        return await executeProcedure(sql, [cdEmpresa], 2);
     } catch (err) {
         throw { err };
     }
 }
 
-async function getDocsDaEmpresa(empresaId) {
+async function getDocsDaEmpresa(cdEmpresa) {
     try {
         let sql = 'call get_docs_da_empresa(?)';
-        return await executeProcedure(sql, [empresaId], 1);
+        return await executeProcedure(sql, [cdEmpresa], 1);
     } catch (err) {
         throw { err };
     }
@@ -64,28 +64,28 @@ async function listDocsTipoEmpresa() {
     }
 }
 
-async function addDocEmpresa(idDocumento, idEmpresa, aoPossui, dataApresentacao) {
+async function addDocEmpresa(cdDocumento, cdEmpresa, aoPossui, dataApresentacao) {
     try {
         let sql = 'call add_doc_empresa(?,?,?,?)';
-        return await executeProcedure(sql, [idDocumento, idEmpresa, aoPossui, dataApresentacao], 2);
+        return await executeProcedure(sql, [cdDocumento, cdEmpresa, aoPossui, dataApresentacao], 2);
     } catch (err) {
         throw { err };
     }
 }
 
-async function deleteDocEmpresa(idDocumento, idEmpresa) {
+async function deleteDocEmpresa(cdDocumento, cdEmpresa) {
     try {
         let sql = 'call delete_doc_empresa(?,?)';
-        return await executeProcedure(sql, [idDocumento, idEmpresa], 2);
+        return await executeProcedure(sql, [cdDocumento, cdEmpresa], 2);
     } catch (err) {
         throw { err };
     }
 }
 
-async function editDocEmpresa(idDocumento, idEmpresa, aoPossui, dataApresentacao, validoAte) {
+async function editDocEmpresa(cdDocumento, cdEmpresa, aoPossui, dataApresentacao, validoAte) {
     try {
         let sql = 'call edit_doc_empresa(?,?,?,?,?)';
-        return await executeProcedure(sql, [idDocumento, idEmpresa, aoPossui, dataApresentacao, validoAte], 2);
+        return await executeProcedure(sql, [cdDocumento, cdEmpresa, aoPossui, dataApresentacao, validoAte], 2);
     } catch (err) {
         throw { err };
     }

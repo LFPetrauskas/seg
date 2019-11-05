@@ -5,8 +5,8 @@ module.exports = app => {
     app.get('/funcionario/get', (req, res) => {
         (async () => {
             try {
-                let { usuarioId } = req.body;
-                let results = await getFuncionario(usuarioId);
+                let { cdFuncionario } = req.body;
+                let results = await getFuncionario(cdFuncionario);
                 res.status(200).send(results);
             } catch (error) {
                 res.send({ error });
@@ -30,9 +30,9 @@ module.exports = app => {
     app.get('/funcionario/list', (req, res) => {
         (async () => {
             try {
-                let { empresaId } = req.body;
-                empresaId = empresaId > 0 ? empresaId : null;
-                let results = await listFuncionario(empresaId);
+                let { cdEmpresa } = req.body;
+                cdEmpresa = cdEmpresa > 0 ? cdEmpresa : null;
+                let results = await listFuncionario(cdEmpresa);
                 res.send(results);
             } catch (error) {
                 res.send({ error });
@@ -43,8 +43,8 @@ module.exports = app => {
     app.delete('/funcionario/delete', (req, res) => {
         (async () => {
             try {
-                let { usuarioId } = req.body;
-                let results = await deleteFuncionario(usuarioId);
+                let { cdFuncionario } = req.body;
+                let results = await deleteFuncionario(cdFuncionario);
                 res.send(results)
             } catch (err) {
                 res.send({ error })

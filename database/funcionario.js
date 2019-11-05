@@ -1,9 +1,9 @@
 const { executeProcedure } = require('./utils');
 
-async function getFuncionario(usuarioId) {
+async function getFuncionario(cdFuncionario) {
     try {
         let sql = 'call get_funcionario(?)';
-        return await executeProcedure(sql, [usuarioId], 1);
+        return await executeProcedure(sql, [cdFuncionario], 1);
     } catch (err) {
         throw {
             err
@@ -11,10 +11,10 @@ async function getFuncionario(usuarioId) {
     }
 }
 
-async function listFuncionario(empresaId) {
+async function listFuncionario(cdEmpresa) {
     try {
         let sql = 'call list_funcionario(?)';
-        return await executeProcedure(sql, [empresaId], 1);
+        return await executeProcedure(sql, [cdEmpresa], 1);
     } catch (err) {
         throw {
             err
@@ -33,10 +33,10 @@ async function addFuncionario(nome, logradouro, numeroEndereco, bairro, cidade, 
     }
 }
 
-async function editFuncionario(usuarioId, nome, logradouro, numeroEndereco, bairro, cidade, cdEmpresa, aoAtivo) {
+async function editFuncionario(cdFuncionario, nome, logradouro, numeroEndereco, bairro, cidade, cdEmpresa, aoAtivo) {
     try {
         let sql = 'call edit_funcionario(?)';
-        return await executeProcedure(sql, [usuarioId, nome, logradouro, numeroEndereco, bairro, cidade, cdEmpresa, aoAtivo], 2);
+        return await executeProcedure(sql, [cdFuncionario, nome, logradouro, numeroEndereco, bairro, cidade, cdEmpresa, aoAtivo], 2);
     } catch (err) {
         throw {
             err
@@ -44,10 +44,10 @@ async function editFuncionario(usuarioId, nome, logradouro, numeroEndereco, bair
     }
 }
 
-async function deleteFuncionario(usuarioId) {
+async function deleteFuncionario(cdFuncionario) {
     try {
         let sql = 'call delete_funcionario(?)';
-        return await executeProcedure(sql, [usuarioId], 2);
+        return await executeProcedure(sql, [cdFuncionario], 2);
     } catch (err) {
         throw {
             err
@@ -55,37 +55,37 @@ async function deleteFuncionario(usuarioId) {
     }
 }
 
-async function addDocFuncionario(idDocumento, idFuncionario, aoPossui, dataApresentacao) {
+async function addDocFuncionario(cdDocumento, cdFuncionario, aoPossui, dataApresentacao) {
     try {
         let sql = 'call add_doc_funcionario(?,?,?,?)';
-        return await executeProcedure(sql, [idDocumento, idFuncionario, aoPossui, dataApresentacao], 2);
+        return await executeProcedure(sql, [cdDocumento, cdFuncionario, aoPossui, dataApresentacao], 2);
     } catch (error) {
         throw error;
     }
 }
 
-async function deleteDocFuncionario(idDocumento, idFuncionario) {
+async function deleteDocFuncionario(cdDocumento, cdFuncionario) {
     try {
         let sql = 'call delete_doc_funcionario(?,?)';
-        return await executeProcedure(sql, [idDocumento, idFuncionario], 2);
+        return await executeProcedure(sql, [cdDocumento, cdFuncionario], 2);
     } catch (error) {
         throw error;
     }
 }
 
-async function editDocFuncionario(idDocumento, idFuncionario, aoPossui, dataApresentacao, validoAte) {
+async function editDocFuncionario(cdDocumento, cdFuncionario, aoPossui, dataApresentacao, validoAte) {
     try {
         let sql = 'call edit_doc_funcionario(?,?,?,?,?)';
-        return await executeProcedure(sql, [idDocumento, idFuncionario, aoPossui, dataApresentacao, validoAte], 2);
+        return await executeProcedure(sql, [cdDocumento, cdFuncionario, aoPossui, dataApresentacao, validoAte], 2);
     } catch (error) {
         throw error;
     }
 }
 
-async function getDocsDoFuncionario(idFuncionario) {
+async function getDocsDoFuncionario(cdFuncionario) {
     try {
         let sql = 'call get_docs_do_funcionario(?)';
-        return await executeProcedure(sql, [idFuncionario], 1);
+        return await executeProcedure(sql, [cdFuncionario], 1);
     } catch (error) {
         throw error;
     }
