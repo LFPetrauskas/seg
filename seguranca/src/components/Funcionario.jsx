@@ -1,5 +1,5 @@
 import React from 'react';
-import ListComponent from './Util';
+import ListComponent from './ListComponent';
 import { listFuncionarios } from '../services/services';
 
 class Funcionario extends React.Component {

@@ -1,4 +1,5 @@
 const { checkLogin } = require('../database/usuario');
+const { getParams } = require('../services/params');
 const { sign } = require('../services/auth');
 
 module.exports = app => {
@@ -19,5 +20,17 @@ module.exports = app => {
                 res.send(error.toString());
             }
         })();
-    })
+    });
+
+    app.post('/params', (req, res) => {
+        (async () => {
+            try {
+                let { params } = req.body;
+                let results = await getParams(params);
+                res.send({ results });
+            } catch (error) {
+                res.send({ error })
+            }
+        })();
+    });
 }

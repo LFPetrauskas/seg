@@ -1,5 +1,5 @@
 import React from 'react';
-import ListComponent from './Util';
+import ListComponent from './ListComponent';
 import { listEmpresas } from '../services/services';
 
 class Empresa extends React.Component {
