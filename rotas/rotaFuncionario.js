@@ -31,9 +31,9 @@ module.exports = app => {
         (async () => {
             try {
                 let { cdEmpresa } = req.body;
-                cdEmpresa = cdEmpresa > 0 ? cdEmpresa : null;
+                cdEmpresa = cdEmpresa > 0 ? cdEmpresa : 1;
                 let results = await listFuncionario(cdEmpresa);
-                res.send(results);
+                res.send({ results });
             } catch (error) {
                 res.send({ error });
             }

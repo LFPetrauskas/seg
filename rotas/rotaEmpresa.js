@@ -1,4 +1,5 @@
-let { getEmpresa, addEmpresa } = require('../database/empresa');
+let { getEmpresa, addEmpresa, listEmpresa } = require('../database/empresa');
+let { } = require('../database/utils');
 
 module.exports = app => {
     app.get('/empresa/get', (req, res) => {
@@ -26,13 +27,11 @@ module.exports = app => {
         })();
     });
 
-    app.get('/empresa/todas', (req, res) => {
+    app.get('/empresa/list', (req, res) => {
         (async () => {
             try {
-                let conn = await connect();
-                let results = await query.bind(conn)('select * from empresa order by nome_empresa');
-                conn.release();
-                res.send(results);
+                let results = await listEmpresa();
+                res.send({ results });
             } catch (error) {
                 res.send({ error });
             }

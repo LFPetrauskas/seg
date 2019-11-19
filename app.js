@@ -5,9 +5,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const { verify } = require('./services/auth');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
 const PORT = process.env.PORT, REACT_HOST = process.env.REACT_HOST;
 
 app.use((req, res, next) => {
@@ -17,26 +14,29 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 require('./rotas/rotaLogin')(app);
 
-app.use((req, res, next) => {
-    (async () => {
-        if (!req.headers.authorization) {
-            return res.send("Inválido");
-        }
-        let token = req.headers.authorization.split(" ")[1];
-        try {
-            let verifiedToken = await verify(token);
-            res.send(verifiedToken)
-        } catch (error) {
-            res.send({
-                error: "Token inválido",
-                info: null
-            });
-        }
-    })();
+// app.use((req, res, next) => {
+//     (async () => {
+//         if (!req.headers.authorization) {
+//             return res.send("Inválido");
+//         }
+//         let token = req.headers.authorization.split(" ")[1];
+//         try {
+//             let verifiedToken = await verify(token);
+//             res.send(verifiedToken);
+//         } catch (error) {
+//             res.send({
+//                 error: "Token inválido",
+//                 info: null
+//             });
+//         }
+//     })();
+// });
 
-})
 require('./rotas/rotaEmpresa')(app);
 require('./rotas/rotaFuncionario')(app);
 require('./rotas/rotaDocumento')(app);
