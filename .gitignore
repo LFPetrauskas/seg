@@ -1,4 +1,4 @@
 /node_modules
 .env
 *.sql
-/seguranca
+/seguranca/node_modules
