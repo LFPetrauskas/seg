@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Empresa from './components/Empresa';
 import Funcionario from './components/Funcionario';
-// import Home from './components/Home';
+import Home from './components/Home';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<Empresa />, document.getElementById('root'));

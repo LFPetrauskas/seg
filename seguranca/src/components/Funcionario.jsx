@@ -1,6 +1,6 @@
 import React from 'react';
 import ListComponent from './ListComponent';
-import { listFuncionarios } from '../services/services';
+import { listFuncionarios } from '../services/svcFuncionario';
 
 class Funcionario extends React.Component {
     constructor(props) {

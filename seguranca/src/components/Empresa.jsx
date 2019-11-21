@@ -1,6 +1,6 @@
 import React from 'react';
 import ListComponent from './ListComponent';
-import { listEmpresas } from '../services/services';
+import { listEmpresas } from '../services/svcEmpresa';
 
 class Empresa extends React.Component {
     constructor(props) {

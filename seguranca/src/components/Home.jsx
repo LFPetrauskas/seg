@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { logIn } from '../services/services';
+import { logIn } from '../services/svcUsuario';
 
 export default () => {
     let [username, setUsername] = useState('')

@@ -1,4 +1,4 @@
-let { addDocumento } = require('../database/documento');
+let { addDocumento, getParams } = require('../database/documento');
 
 module.exports = app => {
     app.put('/documento/add', (req, res) => {
@@ -16,5 +16,17 @@ module.exports = app => {
                 res.send({ error })
             }
         })();
-    })
+    });
+
+    app.post('/params', (req, res) => {
+        (async () => {
+            try {
+                let { params } = req.body;
+                let results = await getParams(params);
+                res.send({ results });
+            } catch (error) {
+                res.send({ error })
+            }
+        })();
+    });
 }

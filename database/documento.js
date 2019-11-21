@@ -18,4 +18,13 @@ async function deleteDocumento(cdDocumento) {
     }
 }
 
-module.exports = { addDocumento, deleteDocumento }
+async function getParams(params) {
+    try {
+        let sql = 'call get_params(?)';
+        return await executeProcedure(sql, [params], 1);
+    } catch (error) {
+        throw error;
+    }
+}
+
+module.exports = { addDocumento, deleteDocumento, getParams }

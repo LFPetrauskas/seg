@@ -1,0 +1,9 @@
+.title {
+    column-count: 10;
+    border: 1px solid;
+}
+
+.cell {
+    border: 1px solid;
+    padding: 10px;
+}
