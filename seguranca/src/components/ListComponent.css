@@ -1,9 +1,8 @@
-.title {
-    column-count: 10;
+td {
     border: 1px solid;
+    padding: 1vw;
 }
 
-.cell {
-    border: 1px solid;
-    padding: 10px;
+.titulo {
+    background-color: #00d9ff40;
 }
