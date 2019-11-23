@@ -9,12 +9,17 @@ class Empresa extends React.Component {
             body: ''
         }
     }
+    voltar = () => {
+        let { originalBody } = this.state;
+        console.log(this)
+        this.setState({ body: originalBody });
+    }
 
     componentDidMount() {
         (async () => {
             let lista = await listEmpresas();
-            let body = <ListComponent lista={lista} />
-            this.setState({ body })
+            let body = <ListComponent lista={lista} voltar={this.voltar} />
+            this.setState({ body, originalBody: body })
         })();
 
     }

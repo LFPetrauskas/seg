@@ -1,6 +1,8 @@
 import React from 'react';
 import './ListComponent.css';
-import { getParams } from '../services/svcDocumento'
+import { getParams } from '../services/svcDocumento';
+import { EditEmpresa } from './EmpresaDetails';
+
 let key = 0;
 
 class ListComponent extends React.Component {
@@ -9,40 +11,18 @@ class ListComponent extends React.Component {
         this.state = {
             lista: props.lista,
             body: [],
-            editWindow: null,
+            editWindow: null
         };
-        this.editar = () => { console.log('asd'); this.setState({ editWindow: this.state.editWindow ? null : <div>EAEAEAEAEAE EAEAEAEAEAE EAEAEAEAEAE EAEAEAEAEAE </div> }) }
+        this.editar = (cdEmpresa) => {
+            this.setState({
+                editWindow: <EditEmpresa cdEmpresa={cdEmpresa} voltar={this.props.voltar} />,
+                body: null
+            })
+        }
     }
 
-    // componentDidMount() {
-    //     (async () => {
-    //         try {
-    //             let { lista } = this.state;
-    //             let propriedades = null, body = [];
-    //             if (lista && lista.length > 0) {
-    //                 let middle = [], body = [];
-    //                 propriedades = Object.keys(lista[0]);
-    //                 let colunas = await getParams(propriedades.toString());
-    //                 let top = <div key='titulo'>{colunas.map(c => <div key={c.desc_param}>{c.valor_param}</div>)}</div>;
-
-    //                 for (let i = 0; i < lista.length; i++) {
-    //                     for (let j = 0; j < propriedades.length; j++) {
-    //                         middle.push(<div key={key++}>{lista[i][propriedades[j]]}</div>)
-    //                     }
-    //                     body.push(<div key={key++}>{middle}</div>)
-    //                 }
-    //                 body.unshift(top)
-    //                 this.setState({ body });
-    //             }
-    //         } catch (error) {
-    //             console.log(error)
-    //             throw error;
-    //         }
-    //     })();
-    // }
-
-    addEditButton = (codigo) => {
-        return <td key={key++}><button onClick={this.editar}>Editar {codigo} </button></td>
+    addEditButton = (cdEmpresa) => {
+        return <td key={key++}><button onClick={() => this.editar(cdEmpresa)}>Editar {cdEmpresa} </button></td>
 
     }
 
@@ -59,7 +39,11 @@ class ListComponent extends React.Component {
                     for (let i = 0; i < lista.length; i++) {
                         let middle = [];
                         for (let j = 0; j < propriedades.length; j++) {
-                            middle.push(<td key={key++}>{lista[i][propriedades[j]]}</td>)
+                            middle.push(<td key={key++}>
+                                {propriedades[j].substring(0, 2) === 'ao' ?
+                                    (lista[i][propriedades[j]] === 1 ? 'S' : 'N') :
+                                    lista[i][propriedades[j]]}
+                            </td>);
                         }
                         middle.push(this.addEditButton(lista[i][propriedades[0]]))
                         body.push(<tr key={key++}>{middle}</tr>)
