@@ -1,11 +1,11 @@
 import React from 'react';
 import { getEmpresa, editEmpresa } from '../services/svcEmpresa';
 
-class EditEmpresa extends React.Component {
+class EditFuncionario extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cdEmpresa: props.codigo,
+            cdEmpresa: props.cdEmpresa,
             nomeEmpresarial: '',
             cnpj: '',
             logradouro: '',
@@ -67,11 +67,11 @@ class EditEmpresa extends React.Component {
                     </tbody>
                 </table>
                 <button onClick={() => this.save()}>Salvar</button> <br />
-                <button onClick={this.props.voltar}>Voltar</button>
+                <button onClick={() => { console.log(this.props.voltar); this.props.voltar() }}>Voltar</button>
             </React.Fragment>
         );
     }
 }
 
 
-export { EditEmpresa };
+export { EditFuncionario };

@@ -22,10 +22,10 @@ async function listFuncionario(cdEmpresa) {
     }
 }
 
-async function addFuncionario(nome, logradouro, numeroEndereco, bairro, cidade, cdEmpresa) {
+async function addFuncionario(nome, logradouro, numeroEndereco, bairro, municipio, cdEmpresa) {
     try {
         let sql = 'call add_funcionario(?,?,?,?,?, ?)';
-        return await executeProcedure(sql, [nome, logradouro, numeroEndereco, bairro, cidade, cdEmpresa], 2);
+        return await executeProcedure(sql, [nome, logradouro, numeroEndereco, bairro, municipio, cdEmpresa], 2);
     } catch (err) {
         throw {
             err
@@ -33,10 +33,10 @@ async function addFuncionario(nome, logradouro, numeroEndereco, bairro, cidade, 
     }
 }
 
-async function editFuncionario(cdFuncionario, nome, logradouro, numeroEndereco, bairro, cidade, cdEmpresa, aoAtivo) {
+async function editFuncionario(cdFuncionario, nome, logradouro, numeroEndereco, bairro, municipio, cdEmpresa, aoAtivo) {
     try {
         let sql = 'call edit_funcionario(?)';
-        return await executeProcedure(sql, [cdFuncionario, nome, logradouro, numeroEndereco, bairro, cidade, cdEmpresa, aoAtivo], 2);
+        return await executeProcedure(sql, [cdFuncionario, nome, logradouro, numeroEndereco, bairro, municipio, cdEmpresa, aoAtivo], 2);
     } catch (err) {
         throw {
             err

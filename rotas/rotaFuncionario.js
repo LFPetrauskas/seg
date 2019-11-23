@@ -17,9 +17,9 @@ module.exports = app => {
     app.put('/funcionario/add', (req, res) => {
         (async () => {
             try {
-                let { nome, logradouro, numeroEndereco, bairro, cidade, cdEmpresa } = req.body;
+                let { nome, logradouro, numeroEndereco, bairro, municipio, cdEmpresa } = req.body;
                 cdEmpresa = cdEmpresa === '' ? null : +cdEmpresa;
-                let results = await addFuncionario(nome, logradouro, numeroEndereco, bairro, cidade, cdEmpresa);
+                let results = await addFuncionario(nome, logradouro, numeroEndereco, bairro, municipio, cdEmpresa);
                 res.send(results);
             } catch (error) {
                 res.send({ error });

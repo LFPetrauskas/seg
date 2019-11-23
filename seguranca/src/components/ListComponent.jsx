@@ -1,7 +1,6 @@
 import React from 'react';
 import './ListComponent.css';
 import { getParams } from '../services/svcDocumento';
-import { EditEmpresa } from './EmpresaDetails';
 
 let key = 0;
 
@@ -10,20 +9,13 @@ class ListComponent extends React.Component {
         super(props);
         this.state = {
             lista: props.lista,
-            body: [],
-            editWindow: null
+            body: []
         };
-        this.editar = (cdEmpresa) => {
-            this.setState({
-                editWindow: <EditEmpresa cdEmpresa={cdEmpresa} voltar={this.props.voltar} />,
-                body: null
-            })
-        }
+        this.editar = props.editar;
     }
 
-    addEditButton = (cdEmpresa) => {
-        return <td key={key++}><button onClick={() => this.editar(cdEmpresa)}>Editar {cdEmpresa} </button></td>
-
+    addEditButton = (codigo) => {
+        return <td key={key++}><button onClick={() => this.editar(codigo)}>Editar {codigo} </button></td>;
     }
 
     componentDidMount() {
@@ -60,7 +52,6 @@ class ListComponent extends React.Component {
     render() {
         return (
             <React.Fragment>
-                {this.state.editWindow}
                 <table>
                     <tbody className="grid">
                         {this.state.body}
