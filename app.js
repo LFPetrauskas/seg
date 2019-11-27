@@ -9,6 +9,7 @@ const PORT = process.env.PORT, REACT_HOST = process.env.REACT_HOST;
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Origin');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Origin', REACT_HOST);
     res.setHeader('Content-Type', 'application/json');
     next();

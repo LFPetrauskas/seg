@@ -20,6 +20,27 @@ const getEmpresa = async (cdEmpresa) => {
     }
 }
 
+const addEmpresa = async (nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone) => {
+    try {
+        let { error, results } = await request('/empresa/add', 'PUT', { nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone });
+        if (error) throw error;
+        return results;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const deleteEmpresa = async (cdEmpresa) => {
+    try {
+        let { error, results } = await request('/empresa/delete', 'DELETE', { cdEmpresa });
+        if (error) throw error;
+        return results;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
 const editEmpresa = async (cdEmpresa, nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone, aoAtivo) => {
     try {
         let { error, results } = await request('/empresa/edit', 'POST', { cdEmpresa, nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone, aoAtivo });
@@ -32,4 +53,4 @@ const editEmpresa = async (cdEmpresa, nomeEmpresarial, cnpj, logradouro, numeroE
 
 
 
-export { listEmpresas, getEmpresa, editEmpresa };
+export { listEmpresas, getEmpresa, addEmpresa, editEmpresa, deleteEmpresa };

@@ -1,10 +1,11 @@
 import React from 'react';
-import { getEmpresa, editEmpresa } from '../services/svcEmpresa';
+import { addFuncionario, editFuncionario, deleteFuncionario, etFuncionario } from '../services/svcFuncionario';
 
-class EditFuncionario extends React.Component {
+class FuncionarioDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            mode: props.mode || 'EDIT',
             cdEmpresa: props.cdEmpresa,
             nomeEmpresarial: '',
             cnpj: '',
@@ -22,6 +23,10 @@ class EditFuncionario extends React.Component {
 
     save = () => {
         (async () => {
+            let { mode } = this.state;
+            if (mode === 'ADD') {
+
+            }
             let { cdEmpresa, nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone, aoAtivo } = this.state;
             await editEmpresa(cdEmpresa, nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone, aoAtivo)
         })();
@@ -47,7 +52,7 @@ class EditFuncionario extends React.Component {
     }
 
     render() {
-        
+
         return (
             <React.Fragment>
                 <table>
@@ -74,4 +79,4 @@ class EditFuncionario extends React.Component {
 }
 
 
-export { EditFuncionario };
+export { FuncionarioDetails };

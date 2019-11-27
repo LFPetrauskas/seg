@@ -1,12 +1,14 @@
 import React from 'react';
 import ListComponent from './ListComponent';
-import { EditFuncionario } from './FuncionarioDetail';
+import { FuncionarioDetails } from './FuncionarioDetail';
 import { listFuncionarios } from '../services/svcFuncionario';
 
 class Funcionario extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            addButton: '',
+            addWindow: '',
             body: '',
             editWindow: ''
         }
@@ -14,12 +16,23 @@ class Funcionario extends React.Component {
 
     voltar = () => {
         let { originalBody } = this.state;
-        this.setState({ body: originalBody, editWindow: null });
+        this.setState({ body: originalBody, addWindow: null, addButton: null, editWindow: null });
+    }
+
+    adicionar = () => {
+        this.setState({
+            addButton: null,
+            addWindow: <FuncionarioDetails voltar={this.voltar} mode={'ADD'} />,
+            editWindow: null,
+            body: null
+        })
     }
 
     editar = codigo => {
         this.setState({
-            editWindow: <EditFuncionario codigo={codigo} voltar={this.voltar} />,
+            addButton: null,
+            addWindow: null,
+            editWindow: <FuncionarioDetails codigo={codigo} voltar={this.voltar} />,
             body: null
         })
     }
@@ -27,8 +40,9 @@ class Funcionario extends React.Component {
     componentDidMount() {
         (async () => {
             let lista = await listFuncionarios();
+            let addButton = <button onClick={this.adicionar}>Novo</button>
             let body = <ListComponent lista={lista} voltar={this.voltar} editar={this.editar} />
-            this.setState({ body, originalBody: <Funcionario props={this.props} /> })
+            this.setState({ body, originalBody: <Funcionario props={this.props} />, addButton })
         })();
 
     }
@@ -36,6 +50,8 @@ class Funcionario extends React.Component {
     render() {
         return (
             <React.Fragment>
+                {this.state.addButton}
+                {this.state.addWindow}
                 {this.state.editWindow}
                 {this.state.body}
             </React.Fragment>);

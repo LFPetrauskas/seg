@@ -1,4 +1,4 @@
-let { getEmpresa, addEmpresa, listEmpresa, editEmpresa } = require('../database/empresa');
+let { getEmpresa, addEmpresa, listEmpresa, editEmpresa, deleteEmpresa } = require('../database/empresa');
 let { } = require('../database/utils');
 
 module.exports = app => {
@@ -27,11 +27,23 @@ module.exports = app => {
         })();
     });
 
+    app.delete('/empresa/delete', (req, res) => {
+        (async () => {
+            try {
+                let { cdEmpresa } = req.body;
+                let results = await deleteEmpresa(cdEmpresa);
+                res.send({ results });
+            } catch (error) {
+                res.send({ error });
+            }
+        })();
+    });
+
     app.post('/empresa/edit', (req, res) => {
         (async () => {
             try {
                 let { cdEmpresa, nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone, aoAtivo } = req.body;
-                aoAtivo = aoAtivo === 'S' ? 1 :0; 
+                aoAtivo = aoAtivo === 'S' ? 1 : 0;
                 let results = await editEmpresa(cdEmpresa, nomeEmpresarial, cnpj, logradouro, numeroEndereco, complemento, cep, bairro, municipio, email, telefone, aoAtivo);
                 res.send(results);
             } catch (error) {
