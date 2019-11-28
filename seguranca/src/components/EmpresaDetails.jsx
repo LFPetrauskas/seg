@@ -1,4 +1,5 @@
 import React from 'react';
+import Funcionario from './Funcionario';
 import { getEmpresa, addEmpresa, editEmpresa, deleteEmpresa } from '../services/svcEmpresa';
 
 class EmpresaDetails extends React.Component {
@@ -87,6 +88,7 @@ class EmpresaDetails extends React.Component {
                 <button onClick={() => this.save()}>Salvar</button> <br />
                 <button onClick={this.props.voltar}>Voltar</button>
                 {this.state.mode === 'EDIT' ? <button onClick={() => this.delete()} >Excluir</button> : null}
+                <Funcionario cdEmpresa={this.state.cdEmpresa} />
             </React.Fragment>
         );
     }

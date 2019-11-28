@@ -5,7 +5,7 @@ const request = async (path, method, parameters) => {
             headers: { 'Content-Type': 'application/json' },
             body: parameters ? JSON.stringify(parameters) : null
         });
-        return JSON.parse(Buffer.from(await response.arrayBuffer()).toString());
+        return response.json();//JSON.parse(Buffer.from(await response.arrayBuffer()).toString());
     } catch (error) {
         throw error;
     }

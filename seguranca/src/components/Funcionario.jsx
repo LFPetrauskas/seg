@@ -7,6 +7,7 @@ class Funcionario extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            cdEmpresa: props.cdEmpresa || '-1',
             addButton: '',
             addWindow: '',
             body: '',
@@ -39,7 +40,8 @@ class Funcionario extends React.Component {
 
     componentDidMount() {
         (async () => {
-            let lista = await listFuncionarios();
+            let { cdEmpresa } = this.state;
+            let lista = await listFuncionarios(cdEmpresa);
             let addButton = <button onClick={this.adicionar}>Novo</button>
             let body = <ListComponent lista={lista} voltar={this.voltar} editar={this.editar} />
             this.setState({ body, originalBody: <Funcionario props={this.props} />, addButton })
